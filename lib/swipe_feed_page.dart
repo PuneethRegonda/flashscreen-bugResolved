@@ -17,9 +17,7 @@ class _SwipeFeedPageState extends State<SwipeFeedPage>
   {
     return new Scaffold
     (
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-      ),
+
       backgroundColor: Colors.white,
       body: new Column
       (

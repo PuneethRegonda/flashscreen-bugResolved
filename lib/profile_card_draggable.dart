@@ -47,10 +47,12 @@ class ProfileCardDraggable extends StatelessWidget {
                                 MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   Text(
-                                    'Who are you www ww www w  w w wf et gg t eg sd sd s?',
+                                    'Here Wil Be The Question?',
                                     textScaleFactor: 0.9,
                                     softWrap: true,
                                     textAlign: TextAlign.justify,
+                                      style: new TextStyle(
+                                          fontSize: 20.0, fontWeight: FontWeight.w700)
                                   ),
 //                                  Text('Who are you www ww www w  w w wf et gg t eg sd s d s?',
 //                                    textScaleFactor: 1.0,
@@ -72,15 +74,18 @@ class ProfileCardDraggable extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         FlatButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+
+                          },
                           child: Text('hello'),
                         ),
                         new Text('Card number $cardNum',
                             style: new TextStyle(
                                 fontSize: 20.0, fontWeight: FontWeight.w700)),
-                        new Padding(padding: new EdgeInsets.only(bottom: 8.0)),
-                        new Text('A short description.',
-                            textAlign: TextAlign.start),
+//                        new Padding(padding: new EdgeInsets.only(bottom: 8.0)),
+//                        new Text('A short description.',
+//                            textAlign: TextAlign.start),
                       ],
                     ))
               ],

@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget
         primarySwatch: Colors.blue,
         ),
       home: Scaffold(
-        body: SwipeFeedPage(),
+        appBar: AppBar(
+          leading: IconButton(icon:Icon(Icons.arrow_back_ios), onPressed: ()=>Navigator.of(context).pop()),
+        ),
+        body:FalshCard(),
       )
     );
   }
@@ -160,30 +163,27 @@ class _FalshCardState extends State<FalshCard> {
    return FlipCard(
      direction: FlipDirection.HORIZONTAL,
      front: SwipeFeedPage(),
-     back:  Text('hello'),
+     back:  SafeArea(
+       right: true,
+       bottom: true,
+       top: true,
+       left: true,
+       child: Stack(
+         children: <Widget>[
+           GestureDetector(
+             onTap: (){
+               return FocusScope.of(context).requestFocus(FocusNode());
+             },
+             child: Center(
+               child: Text("Hello This will  be the card  answer"),
+             ),
+           ),
+
+         ],
+       ),
+     ),
    );
-    //    return Scaffold(
-//      appBar: AppBar(
-//        backgroundColor: Colors.white,
-//        elevation: 0.0,
-//        leading: IconButton(
-//          color: Colors.blue,
-//          onPressed: (){},
-//          icon: Icon(Icons.arrow_back_ios),
-//        ),
-//        actions: <Widget>[
-//          IconButton(
-//            // color: Colors.blue,
-//            onPressed: (){},
-//            icon: Icon(Icons.arrow_back_ios),
-//          ),
-//        ],
-//      ),
-//      body:Container(
-//        child:  ,
-//      ),
-//
-//    );
+
   }
 }
 
@@ -301,17 +301,17 @@ class _FlipCardState extends State<FlipCard>
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
+
         AnimationCard(
-          animation: _frontRotation,
+          animation: _backRotation,
           child: widget.back,
           direction: widget.direction,
         ),
         AnimationCard(
-          animation: _backRotation,
+          animation: _frontRotation,
           child: widget.front,
           direction: widget.direction,
         ),
-
         Positioned(
           bottom: 10.0,
           right: 0.0,
@@ -322,6 +322,7 @@ class _FlipCardState extends State<FlipCard>
     );
   }
   Widget _buildBottomBar(Function togglecard) {
+    Size _size = MediaQuery.of(context).size;
     return Container(
       color: Colors.transparent,
       child: BottomAppBar(
@@ -345,13 +346,22 @@ class _FlipCardState extends State<FlipCard>
               //   onPressed: () {
               //   },
               // ),
-              new RoundIconButton.small(
-                icon: Icons.star,
-                iconColor: Colors.blue,
+              GradientButton(
                 onPressed: () {
                   return togglecard();
-                },
+                  },
+
+                title: 'FlipCard',
+                width: _size.width * 0.8,
+                height: _size.height * 0.078,
               ),
+//              new RoundIconButton.small(
+//                icon: Icons.star,
+//                iconColor: Colors.blue,
+//                onPressed: () {
+//                  return togglecard();
+//                },
+//              ),
               // new RoundIconButton.large(
               //   icon: Icons.favorite,
               //   iconColor: Colors.green,
@@ -379,40 +389,7 @@ class _FlipCardState extends State<FlipCard>
   }
 }
 
-///
-/*class SampleCard extends StatefulWidget {
-  @override
-  _SampleCardState createState() => _SampleCardState();
-}
 
-class _SampleCardState extends State<SampleCard> {
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
-
-      body: ClipRRect(
-        borderRadius: new BorderRadius.circular(10.0),
-        child: new Material(
-          child: new Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              RoundIconButton()
-
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-*/
 
 
 
@@ -470,3 +447,45 @@ class RoundIconButton extends StatelessWidget {
 }
 
 
+
+class GradientButton extends StatelessWidget {
+  const GradientButton(
+      {Key key,
+        @required this.onPressed,
+        @required this.title,
+        @required this.width,
+        @required this.height})
+      : super(key: key);
+
+  final Function onPressed;
+  final String title;
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      splashColor: Colors.lightBlue.withOpacity(0.5),
+      onPressed: onPressed,
+      child: Container(
+        child: Center(
+            child: Text(
+              title,
+              style: TextStyle(fontSize: 20.0, color: Colors.white),
+            )),
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30.0),
+          shape: BoxShape.rectangle,
+          gradient: new LinearGradient(
+            colors: [
+              Color.fromRGBO(57, 160, 205, 1),
+              Color.fromRGBO(5, 193, 154, 1)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
