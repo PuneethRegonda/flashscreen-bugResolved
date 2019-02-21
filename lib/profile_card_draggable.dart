@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: non_constant_identifier_names
 String Question = 'Answer to the ';
 int len = Question.length;
 
@@ -10,8 +11,8 @@ class ProfileCardDraggable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+//    double height = MediaQuery.of(context).size.height;
+//    double width = MediaQuery.of(context).size.width;
     return ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testtinder/dashboardscreen.dart';
 import 'swipe_feed_page.dart';
 import 'dart:math';
 import 'package:scoped_model/scoped_model.dart';
@@ -7,7 +8,8 @@ import 'scopedmodel.dart';
 void main() => runApp(MaterialApp(
       home: ScopedModel<FlipScoppedModel>(
         model: FlipScoppedModel(),
-        child: new MyApp(),
+        child: MaterialApp(
+            home: new DashBoard()),
       ),
       title: 'Tinder cards demo',
       theme: new ThemeData(
@@ -190,22 +192,6 @@ class _FlipCardState extends State<FlipCard>
     ).animate(widget.model.flipcontroller);
   }
 
-//  bool pointerState = false;
-
-//
-//  toggleCard() {
-//    if (widget.model.isFront) {
-//      print('gonig forward');
-//      flipcontroller.forward();
-//    } else {
-//      print('going backward');
-//      flipcontroller.reverse();
-//    }
-//    isFront = !isFront;
-//    setState(() {
-//      pointerState = !pointerState;
-//    });
-//  }
   @override
   Widget build(BuildContext context) {
     return AbsorbPointer(
